@@ -48,33 +48,33 @@
 ### Sprint 1 — Autenticação e Perfil de Usuário
 
 #### Tarefa 1.1 — Model de usuário customizado
-- [ ] 1.1.1 Criar model `CustomUser` em `accounts/models.py` herdando de `AbstractUser` e `TimeStampedModel`
-- [ ] 1.1.2 Adicionar campo `phone = models.CharField(max_length=20, blank=True)` ao `CustomUser`
-- [ ] 1.1.3 Definir `AUTH_USER_MODEL = 'accounts.CustomUser'` no `settings.py` **antes** da primeira migration
-- [ ] 1.1.4 Executar `python manage.py makemigrations accounts` e `python manage.py migrate`
+- [X] 1.1.1 Criar model `CustomUser` em `accounts/models.py` herdando de `AbstractUser` e `TimeStampedModel`
+- [X] 1.1.2 Adicionar campo `phone = models.CharField(max_length=20, blank=True)` ao `CustomUser`
+- [X] 1.1.3 Definir `AUTH_USER_MODEL = 'accounts.CustomUser'` no `settings.py` **antes** da primeira migration
+- [X] 1.1.4 Executar `python manage.py makemigrations accounts` e `python manage.py migrate`
 
 #### Tarefa 1.2 — Model de endereço
-- [ ] 1.2.1 Criar model `Address` em `accounts/models.py` herdando de `TimeStampedModel`
-- [ ] 1.2.2 Campos: `user (FK)`, `street`, `number`, `complement (blank)`, `neighborhood`, `city`, `state`, `zip_code`, `is_default (bool, default=False)`
-- [ ] 1.2.3 Criar migration e migrar
+- [X] 1.2.1 Criar model `Address` em `accounts/models.py` herdando de `TimeStampedModel`
+- [X] 1.2.2 Campos: `user (FK)`, `street`, `number`, `complement (blank)`, `neighborhood`, `city`, `state`, `zip_code`, `is_default (bool, default=False)`
+- [X] 1.2.3 Criar migration e migrar
 
 #### Tarefa 1.3 — Formulários de autenticação
-- [ ] 1.3.1 Criar `accounts/forms.py` com `RegisterForm` herdando de `UserCreationForm` com campos: `first_name`, `last_name`, `email`, `phone`, `password1`, `password2`
-- [ ] 1.3.2 Criar `LoginForm` usando `AuthenticationForm` do Django
-- [ ] 1.3.3 Criar `ProfileForm` para edição de perfil com campos: `first_name`, `last_name`, `phone`
-- [ ] 1.3.4 Aplicar classes TailwindCSS nos widgets dos formulários via `django-widget-tweaks`
+- [X] 1.3.1 Criar `accounts/forms.py` com `RegisterForm` herdando de `UserCreationForm` com campos: `first_name`, `last_name`, `email`, `phone`, `password1`, `password2`
+- [X] 1.3.2 Criar `LoginForm` usando `AuthenticationForm` do Django
+- [X] 1.3.3 Criar `ProfileForm` para edição de perfil com campos: `first_name`, `last_name`, `phone`
+- [X] 1.3.4 Aplicar classes TailwindCSS nos widgets dos formulários via `django-widget-tweaks`
 
 #### Tarefa 1.4 — Views de autenticação
-- [ ] 1.4.1 Criar `RegisterView` (CBV `CreateView`) em `accounts/views.py` que autentica o usuário automaticamente após cadastro
-- [ ] 1.4.2 Usar `LoginView` e `LogoutView` do `django.contrib.auth.views` configurados nas URLs
-- [ ] 1.4.3 Criar `ProfileView` (CBV `UpdateView` com `LoginRequiredMixin`) para edição de dados do usuário
-- [ ] 1.4.4 Configurar `LOGIN_REDIRECT_URL = 'core:home'` e `LOGOUT_REDIRECT_URL = 'core:home'` no `settings.py`
+- [X] 1.4.1 Criar `RegisterView` (CBV `CreateView`) em `accounts/views.py` que autentica o usuário automaticamente após cadastro
+- [X] 1.4.2 Usar `LoginView` e `LogoutView` do `django.contrib.auth.views` configurados nas URLs
+- [X] 1.4.3 Criar `ProfileView` (CBV `UpdateView` com `LoginRequiredMixin`) para edição de dados do usuário
+- [X] 1.4.4 Configurar `LOGIN_REDIRECT_URL = 'core:home'` e `LOGOUT_REDIRECT_URL = 'core:home'` no `settings.py`
 
 #### Tarefa 1.5 — Templates de autenticação
-- [ ] 1.5.1 Criar `templates/accounts/register.html` com formulário estilizado, link para login
-- [ ] 1.5.2 Criar `templates/accounts/login.html` com formulário estilizado, link para cadastro
-- [ ] 1.5.3 Criar `templates/accounts/profile.html` com formulário de edição e seção de histórico de pedidos (link)
-- [ ] 1.5.4 Atualizar navbar para exibir nome do usuário logado e link para perfil/logout, ou links de login/cadastro para visitantes
+- [X] 1.5.1 Criar `templates/accounts/register.html` com formulário estilizado, link para login
+- [X] 1.5.2 Criar `templates/accounts/login.html` com formulário estilizado, link para cadastro
+- [X] 1.5.3 Criar `templates/accounts/profile.html` com formulário de edição e seção de histórico de pedidos (link)
+- [X] 1.5.4 Atualizar navbar para exibir nome do usuário logado e link para perfil/logout, ou links de login/cadastro para visitantes
 
 ---
 
