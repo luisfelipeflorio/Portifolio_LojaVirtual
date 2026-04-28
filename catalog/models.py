@@ -26,7 +26,7 @@ class Category(TimeStampedModel):
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
-        return reverse('catalog:category_detail', kwargs={'slug': self.slug})
+        return reverse('catalog:list') + f'?categoria={self.slug}'
 
 
 class Product(TimeStampedModel):

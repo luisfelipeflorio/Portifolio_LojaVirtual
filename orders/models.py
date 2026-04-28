@@ -1,6 +1,7 @@
 import random
 from django.db import models
 from django.conf import settings
+from django.utils import timezone
 from core.models import TimeStampedModel
 
 
@@ -48,9 +49,9 @@ class Order(TimeStampedModel):
     customer_name = models.CharField('nome do cliente', max_length=200)
     customer_email = models.EmailField('e-mail do cliente')
     customer_phone = models.CharField('telefone do cliente', max_length=20)
-    delivery_address = models.TextField('endereço de entrega', blank=True)
+    delivery_address = models.TextField('endereco de entrega', blank=True)
     scheduled_at = models.DateTimeField('data/hora agendada', null=True, blank=True)
-    notes = models.TextField('observações', blank=True)
+    notes = models.TextField('observacoes', blank=True)
     subtotal = models.DecimalField('subtotal', max_digits=10, decimal_places=2, default=0)
     delivery_fee = models.DecimalField('frete', max_digits=10, decimal_places=2, default=0)
     total = models.DecimalField('total', max_digits=10, decimal_places=2, default=0)
@@ -61,7 +62,7 @@ class Order(TimeStampedModel):
         super().save(*args, **kwargs)
 
     def generate_protocol(self):
-        year = models.DateField().today().year
+        year = timezone.now().year
         random_part = ''.join([str(random.randint(0, 9)) for _ in range(4)])
         return f'CON-{year}{random_part}'
 
@@ -89,7 +90,7 @@ class OrderItem(TimeStampedModel):
         verbose_name='produto'
     )
     product_name = models.CharField('nome do produto', max_length=200)
-    unit_price = models.DecimalField('preço unitário', max_digits=10, decimal_places=2)
+    unit_price = models.DecimalField('preco unitario', max_digits=10, decimal_places=2)
     quantity = models.PositiveIntegerField('quantidade', default=1)
     subtotal = models.DecimalField('subtotal', max_digits=10, decimal_places=2, default=0)
 
