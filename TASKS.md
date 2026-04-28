@@ -112,34 +112,34 @@
 
 ---
 
-### Sprint 3 — Carrinho de Compras
+### Sprint 3 — Carrinho de Compras [X]
 
 #### Tarefa 3.1 — Lógica do carrinho em sessão
-- [ ] 3.1.1 Criar `cart/cart.py` com classe `Cart` que gerencia o carrinho na sessão Django
-- [ ] 3.1.2 Implementar método `add(product, quantity=1)` que adiciona ou incrementa item na sessão
-- [ ] 3.1.3 Implementar método `remove(product_id)` que remove item da sessão
-- [ ] 3.1.4 Implementar método `update(product_id, quantity)` que atualiza a quantidade
-- [ ] 3.1.5 Implementar propriedade `total` que soma `price * quantity` de todos os itens
-- [ ] 3.1.6 Implementar método `__len__()` retornando a quantidade total de itens
-- [ ] 3.1.7 Implementar método `__iter__()` que itera sobre itens enriquecendo com objetos `Product` do banco
-- [ ] 3.1.8 Implementar método `clear()` para limpar o carrinho após pedido confirmado
+- [X] 3.1.1 Criar `cart/cart.py` com classe `Cart` que gerencia o carrinho na sessão Django
+- [X] 3.1.2 Implementar método `add(product, quantity=1)` que adiciona ou incrementa item na sessão
+- [X] 3.1.3 Implementar método `remove(product_id)` que remove item da sessão
+- [X] 3.1.4 Implementar método `update(product_id, quantity)` que atualiza a quantidade
+- [X] 3.1.5 Implementar propriedade `total` que soma `price * quantity` de todos os itens
+- [X] 3.1.6 Implementar método `__len__()` retornando a quantidade total de itens
+- [X] 3.1.7 Implementar método `__iter__()` que itera sobre itens enriquecendo com objetos `Product` do banco
+- [X] 3.1.8 Implementar método `clear()` para limpar o carrinho após pedido confirmado
 
 #### Tarefa 3.2 — Context processor do carrinho
-- [ ] 3.2.1 Criar `cart/context_processors.py` com função `cart` que injeta `cart_count` em todos os templates
-- [ ] 3.2.2 Registrar o context processor em `settings.py` dentro de `TEMPLATES[0]['OPTIONS']['context_processors']`
+- [X] 3.2.1 Criar `cart/context_processors.py` com função `cart` que injeta `cart_count` em todos os templates
+- [X] 3.2.2 Registrar o context processor em `settings.py` dentro de `TEMPLATES[0]['OPTIONS']['context_processors']`
 
 #### Tarefa 3.3 — Views do carrinho
-- [ ] 3.3.1 Criar `CartDetailView` (CBV `View`) em `cart/views.py` que renderiza o carrinho atual
-- [ ] 3.3.2 Criar `CartAddView` (CBV `View`, método POST) que recebe `product_id` e `quantity` e adiciona ao carrinho, redirecionando com mensagem de sucesso
-- [ ] 3.3.3 Criar `CartRemoveView` (CBV `View`, método POST) que remove item do carrinho
-- [ ] 3.3.4 Criar `CartUpdateView` (CBV `View`, método POST) que atualiza quantidade de um item
-- [ ] 3.3.5 Configurar URLs em `cart/urls.py`
+- [X] 3.3.1 Criar `CartDetailView` (CBV `View`) em `cart/views.py` que renderiza o carrinho atual
+- [X] 3.3.2 Criar `CartAddView` (CBV `View`, método POST) que recebe `product_id` e `quantity` e adiciona ao carrinho, redirecionando com mensagem de sucesso
+- [X] 3.3.3 Criar `CartRemoveView` (CBV `View`, método POST) que remove item do carrinho
+- [X] 3.3.4 Criar `CartUpdateView` (CBV `View`, método POST) que atualiza quantidade de um item
+- [X] 3.3.5 Configurar URLs em `cart/urls.py`
 
 #### Tarefa 3.4 — Templates do carrinho
-- [ ] 3.4.1 Criar `templates/cart/detail.html` com tabela/lista de itens, colunas: produto, preço unitário, quantidade (inputs + / −), subtotal, ação remover
-- [ ] 3.4.2 Implementar totalizador: subtotal, frete (campo fixo "A combinar") e total
-- [ ] 3.4.3 Botão "Finalizar Pedido" levando ao checkout e botão "Continuar Comprando" voltando ao catálogo
-- [ ] 3.4.4 Exibir estado vazio do carrinho com mensagem e link para o catálogo
+- [X] 3.4.1 Criar `templates/cart/detail.html` com tabela/lista de itens, colunas: produto, preço unitário, quantidade (inputs + / −), subtotal, ação remover
+- [X] 3.4.2 Implementar totalizador: subtotal, frete (campo fixo "A combinar") e total
+- [X] 3.4.3 Botão "Finalizar Pedido" levando ao checkout e botão "Continuar Comprando" voltando ao catálogo
+- [X] 3.4.4 Exibir estado vazio do carrinho com mensagem e link para o catálogo
 
 ---
 
