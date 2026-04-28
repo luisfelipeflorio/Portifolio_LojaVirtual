@@ -185,40 +185,40 @@
 
 ---
 
-### Sprint 5 — Painel Administrativo
+### Sprint 5 — Painel Administrativo [X]
 
 #### Tarefa 5.1 — Dashboard principal
-- [ ] 5.1.1 Criar `DashboardHomeView` (CBV `TemplateView` com `LoginRequiredMixin`) em `dashboard/views.py` com verificação `if not request.user.is_staff: raise PermissionDenied`
-- [ ] 5.1.2 Calcular no `get_context_data()`: total de pedidos hoje, receita do dia, pedidos pendentes (status `received` ou `preparing`), pedidos prontos (status `ready`)
-- [ ] 5.1.3 Criar `templates/dashboard/home.html` com grid de cards de KPI (4 cards no topo) e lista dos 10 pedidos mais recentes
-- [ ] 5.1.4 Criar layout base do dashboard `templates/dashboard/base_dashboard.html` com sidebar de navegação e conteúdo principal
+- [X] 5.1.1 Criar `DashboardHomeView` (CBV `TemplateView` com `LoginRequiredMixin`) em `dashboard/views.py` com verificação `if not request.user.is_staff: raise PermissionDenied`
+- [X] 5.1.2 Calcular no `get_context_data()`: total de pedidos hoje, receita do dia, pedidos pendentes (status `received` ou `preparing`), pedidos prontos (status `ready`)
+- [X] 5.1.3 Criar `templates/dashboard/home.html` com grid de cards de KPI (4 cards no topo) e lista dos 10 pedidos mais recentes
+- [X] 5.1.4 Criar layout base do dashboard `templates/dashboard/base_dashboard.html` com sidebar de navegação e conteúdo principal
 
 #### Tarefa 5.2 — Gestão de categorias
-- [ ] 5.2.1 Criar `CategoryListView` (CBV `ListView`) em `dashboard/views.py`
-- [ ] 5.2.2 Criar `CategoryCreateView` (CBV `CreateView`) com `fields = ['name', 'description', 'image', 'is_active', 'sort_order']`
-- [ ] 5.2.3 Criar `CategoryUpdateView` (CBV `UpdateView`) com os mesmos campos
-- [ ] 5.2.4 Criar `CategoryDeleteView` (CBV `DeleteView`) com confirmação
-- [ ] 5.2.5 Criar templates: `dashboard/category_list.html`, `dashboard/category_form.html`, `dashboard/category_confirm_delete.html`
+- [X] 5.2.1 Criar `CategoryListView` (CBV `ListView`) em `dashboard/views.py`
+- [X] 5.2.2 Criar `CategoryCreateView` (CBV `CreateView`) com `fields = ['name', 'description', 'image', 'is_active', 'sort_order']`
+- [X] 5.2.3 Criar `CategoryUpdateView` (CBV `UpdateView`) com os mesmos campos
+- [X] 5.2.4 Criar `CategoryDeleteView` (CBV `DeleteView`) com confirmação
+- [X] 5.2.5 Criar templates: `dashboard/category_list.html`, `dashboard/category_form.html`, `dashboard/category_confirm_delete.html`
 
 #### Tarefa 5.3 — Gestão de produtos
-- [ ] 5.3.1 Criar `ProductListView` (CBV `ListView`) em `dashboard/views.py` com filtro por categoria e status
-- [ ] 5.3.2 Criar `ProductCreateView` (CBV `CreateView`) com todos os campos do model `Product`
-- [ ] 5.3.3 Criar `ProductUpdateView` (CBV `UpdateView`) com os mesmos campos
-- [ ] 5.3.4 Criar `ProductDeleteView` (CBV `DeleteView`) com confirmação
-- [ ] 5.3.5 Criar templates: `dashboard/product_list.html` (tabela com imagem miniatura, preço, status), `dashboard/product_form.html`, `dashboard/product_confirm_delete.html`
-- [ ] 5.3.6 Implementar preview de imagem no formulário de produto via JS vanilla
+- [X] 5.3.1 Criar `ProductListView` (CBV `ListView`) em `dashboard/views.py` com filtro por categoria e status
+- [X] 5.3.2 Criar `ProductCreateView` (CBV `CreateView`) com todos os campos do model `Product`
+- [X] 5.3.3 Criar `ProductUpdateView` (CBV `UpdateView`) com os mesmos campos
+- [X] 5.3.4 Criar `ProductDeleteView` (CBV `DeleteView`) com confirmação
+- [X] 5.3.5 Criar templates: `dashboard/product_list.html` (tabela com imagem miniatura, preço, status), `dashboard/product_form.html`, `dashboard/product_confirm_delete.html`
+- [X] 5.3.6 Implementar preview de imagem no formulário de produto via JS vanilla
 
 #### Tarefa 5.4 — Gestão de pedidos
-- [ ] 5.4.1 Criar `OrderListView` (CBV `ListView`) em `dashboard/views.py` com filtros por status e data via GET params
-- [ ] 5.4.2 Criar `OrderDetailAdminView` (CBV `DetailView`) que exibe todos os dados do pedido para o admin
-- [ ] 5.4.3 Criar `OrderStatusUpdateView` (CBV `View`, método POST) que recebe `order_id` e `status` e atualiza o model
-- [ ] 5.4.4 No `OrderStatusUpdateView`, após salvar, disparar signal ou chamar função que envia e-mail de atualização ao cliente
-- [ ] 5.4.5 Criar `orders/signals.py` com signal `post_save` que detecta mudança de `status` e envia e-mail de atualização (verificar se `status` realmente mudou comparando com versão anterior)
-- [ ] 5.4.6 Criar templates: `dashboard/order_list.html` (tabela com filtros e badges de status), `dashboard/order_detail.html`, `dashboard/order_status_form.html` (dropdown de status + botão salvar)
+- [X] 5.4.1 Criar `OrderListView` (CBV `ListView`) em `dashboard/views.py` com filtros por status e data via GET params
+- [X] 5.4.2 Criar `OrderDetailAdminView` (CBV `DetailView`) que exibe todos os dados do pedido para o admin
+- [X] 5.4.3 Criar `OrderStatusUpdateView` (CBV `View`, método POST) que recebe `order_id` e `status` e atualiza o model
+- [X] 5.4.4 No `OrderStatusUpdateView`, após salvar, disparar signal ou chamar função que envia e-mail de atualização ao cliente
+- [X] 5.4.5 Criar `orders/signals.py` com signal `post_save` que detecta mudança de `status` e envia e-mail de atualização (verificar se `status` realmente mudou comparando com versão anterior)
+- [X] 5.4.6 Criar templates: `dashboard/order_list.html` (tabela com filtros e badges de status), `dashboard/order_detail.html`, `dashboard/order_status_form.html` (dropdown de status + botão salvar)
 
 #### Tarefa 5.5 — Mixin de segurança para o dashboard
-- [ ] 5.5.1 Criar `dashboard/mixins.py` com `StaffRequiredMixin` herdando de `LoginRequiredMixin` que verifica `request.user.is_staff` e lança `PermissionDenied` caso contrário
-- [ ] 5.5.2 Aplicar `StaffRequiredMixin` em todas as views do dashboard (substituindo implementações inline)
+- [X] 5.5.1 Criar `dashboard/mixins.py` com `StaffRequiredMixin` herdando de `LoginRequiredMixin` que verifica `request.user.is_staff` e lança `PermissionDenied` caso contrário
+- [X] 5.5.2 Aplicar `StaffRequiredMixin` em todas as views do dashboard (substituindo implementações inline)
 
 ---
 

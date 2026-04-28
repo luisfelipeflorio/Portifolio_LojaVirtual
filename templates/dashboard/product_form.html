@@ -1,0 +1,74 @@
+{% extends 'dashboard/base_dashboard.html' %}
+
+{% block dashboard_content %}
+<div class="max-w-3xl mx-auto">
+    <h2 class="text-3xl font-bold font-['Playfair_Display'] text-neutral-900 mb-8">
+        {% if object %}Editar Produto{% else %}Novo Produto{% endif %}
+    </h2>
+
+    <div class="bg-white rounded-2xl shadow-md border border-neutral-100 p-8">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            {% for field in form %}
+            <div class="mb-6">
+                <label for="{{ field.id_for_label }}"
+                       class="block text-sm font-medium text-neutral-700 mb-2">
+                    {{ field.label }}
+                </label>
+                {{ field }}
+                {% if field.errors %}
+                <span class="text-xs text-red-500 mt-1">{{ field.errors.0 }}</span>
+                {% endif %}
+                {% if field.name == 'image' and form.instance.image %}
+                <div class="mt-4">
+                    <p class="text-sm text-neutral-600 mb-2">Imagem atual:</p>
+                    <img id="image-preview" src="{{ form.instance.image.url }}"
+                         alt="Preview" class="w-32 h-32 object-cover rounded-lg">
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+
+            <div class="flex justify-end space-x-4 mt-8">
+                <a href="{% url 'dashboard:product_list' %}"
+                   class="px-6 py-3 border border-neutral-300 text-neutral-700 rounded-xl hover:bg-neutral-50 transition-all duration-200 cursor-pointer">
+                    Cancelar
+                </a>
+                <button type="submit"
+                        class="bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700
+                               text-white font-medium px-6 py-3 rounded-xl shadow-md hover:shadow-lg transition-all duration-200 cursor-pointer">
+                    Salvar
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const imageInput = document.querySelector('input[type="file"]');
+    const preview = document.getElementById('image-preview') || document.createElement('img');
+
+    if (!document.getElementById('image-preview') && imageInput) {
+        preview.id = 'image-preview';
+        preview.className = 'w-32 h-32 object-cover rounded-lg mt-4 hidden';
+        imageInput.parentElement.appendChild(preview);
+    }
+
+    if (imageInput) {
+        imageInput.addEventListener('change', function() {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                    preview.classList.remove('hidden');
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    }
+});
+</script>
+{% endblock %}

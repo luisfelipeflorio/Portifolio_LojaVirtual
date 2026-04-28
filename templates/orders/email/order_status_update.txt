@@ -1,0 +1,10 @@
+Olá, {{ order.customer_name }}!
+
+Seu pedido {{ order.protocol }} teve uma atualização de status:
+
+Novo status: {{ status_display }}
+
+Você pode acompanhar seu pedido acessando nosso site.
+
+Atenciosamente,
+Confeitaria

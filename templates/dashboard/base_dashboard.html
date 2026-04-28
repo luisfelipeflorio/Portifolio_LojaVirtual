@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard | Confeitaria{% endblock %}
+
+{% block content %}
+<div class="min-h-screen bg-gray-100">
+    <!-- Sidebar -->
+    <div class="fixed inset-y-0 left-0 w-64 bg-gradient-to-b from-rose-900 to-pink-900 text-white shadow-xl">
+        <div class="p-6">
+            <h1 class="text-2xl font-bold font-['Playfair_Display']">Dashboard</h1>
+            <p class="text-rose-200 text-sm mt-1">Confeitaria</p>
+        </div>
+        <nav class="mt-6">
+            <a href="{% url 'dashboard:home' %}"
+               class="flex items-center px-6 py-3 text-rose-100 hover:bg-rose-800 hover:text-white transition-colors duration-200">
+                <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-4 0h4"></path>
+                </svg>
+                Home
+            </a>
+            <a href="{% url 'dashboard:order_list' %}"
+               class="flex items-center px-6 py-3 text-rose-100 hover:bg-rose-800 hover:text-white transition-colors duration-200">
+                <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+                </svg>
+                Pedidos
+            </a>
+            <a href="{% url 'dashboard:product_list' %}"
+               class="flex items-center px-6 py-3 text-rose-100 hover:bg-rose-800 hover:text-white transition-colors duration-200">
+                <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
+                </svg>
+                Produtos
+            </a>
+            <a href="{% url 'dashboard:category_list' %}"
+               class="flex items-center px-6 py-3 text-rose-100 hover:bg-rose-800 hover:text-white transition-colors duration-200">
+                <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                </svg>
+                Categorias
+            </a>
+            <div class="border-t border-rose-700 mt-6 pt-6">
+                <a href="{% url 'core:home' %}"
+                   class="flex items-center px-6 py-3 text-rose-100 hover:bg-rose-800 hover:text-white transition-colors duration-200">
+                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                    </svg>
+                    Voltar ao Site
+                </a>
+                <a href="{% url 'accounts:logout' %}"
+                   class="flex items-center px-6 py-3 text-rose-100 hover:bg-rose-800 hover:text-white transition-colors duration-200">
+                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+                    </svg>
+                    Sair
+                </a>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Main Content -->
+    <div class="ml-64 p-8">
+        {% include '_messages.html' %}
+        {% block dashboard_content %}{% endblock %}
+    </div>
+</div>
+{% endblock %}
