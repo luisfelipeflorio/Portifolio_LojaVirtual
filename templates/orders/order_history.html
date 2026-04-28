@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block title %}Meus Pedidos{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+  <h1 class="font-['Playfair_Display'] text-3xl md:text-4xl font-bold text-neutral-900 mb-8">
+    Meus Pedidos
+  </h1>
+
+  {% if orders %}
+  <div class="bg-white rounded-2xl shadow-sm overflow-hidden">
+    <table class="w-full">
+      <thead class="bg-neutral-50">
+        <tr>
+          <th class="px-6 py-3 text-left text-xs font-semibold text-neutral-600 uppercase">Protocolo</th>
+          <th class="px-6 py-3 text-left text-xs font-semibold text-neutral-600 uppercase">Data</th>
+          <th class="px-6 py-3 text-left text-xs font-semibold text-neutral-600 uppercase">Total</th>
+          <th class="px-6 py-3 text-left text-xs font-semibold text-neutral-600 uppercase">Status</th>
+          <th class="px-6 py-3 text-left text-xs font-semibold text-neutral-600 uppercase">Ação</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-neutral-100">
+        {% for order in orders %}
+        <tr>
+          <td class="px-6 py-4 font-medium text-neutral-800">{{ order.protocol }}</td>
+          <td class="px-6 py-4 text-neutral-600">{{ order.created_at|date:"d/m/Y H:i" }}</td>
+          <td class="px-6 py-4 text-neutral-800">R$ {{ order.total|floatformat:2 }}</td>
+          <td class="px-6 py-4">
+            {% if order.status == 'received' %}
+              <span class="bg-blue-100 text-blue-700 text-xs font-semibold px-3 py-1 rounded-full">Recebido</span>
+            {% elif order.status == 'preparing' %}
+              <span class="bg-amber-100 text-amber-700 text-xs font-semibold px-3 py-1 rounded-full">Em preparo</span>
+            {% elif order.status == 'ready' %}
+              <span class="bg-green-100 text-green-700 text-xs font-semibold px-3 py-1 rounded-full">Pronto</span>
+            {% elif order.status == 'delivered' %}
+              <span class="bg-neutral-100 text-neutral-600 text-xs font-semibold px-3 py-1 rounded-full">Entregue</span>
+            {% endif %}
+          </td>
+          <td class="px-6 py-4">
+            <a href="{% url 'orders:detail' order.pk %}" class="text-rose-600 hover:text-rose-700 font-medium">Ver detalhe</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+  <div class="text-center py-12">
+    <p class="text-neutral-500 mb-4">Você ainda não fez nenhum pedido.</p>
+    <a href="{% url 'catalog:list' %}" class="inline-block bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 text-white font-medium px-6 py-3 rounded-xl shadow-md hover:shadow-lg transition-all duration-200">
+      Ver Catálogo
+    </a>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

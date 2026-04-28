@@ -1,0 +1,30 @@
+Pedido Confirmado!
+
+Olá {{ order.customer_name }},
+
+Obrigado pela sua compra! Recebemos o seu pedido com sucesso.
+
+Protocolo: {{ order.protocol }}
+
+Itens do Pedido:
+{% for item in items %}
+- {{ item.product_name }} x {{ item.quantity }} = R$ {{ item.subtotal|floatformat:2 }}
+{% endfor %}
+
+Subtotal: R$ {{ order.subtotal|floatformat:2 }}
+Frete: R$ {{ order.delivery_fee|floatformat:2 }}
+Total: R$ {{ order.total|floatformat:2 }}
+
+Dados do cliente:
+E-mail: {{ order.customer_email }}
+Telefone: {{ order.customer_phone }}
+
+{% if order.delivery_type == 'delivery' and order.delivery_address %}
+Endereço de entrega:
+{{ order.delivery_address }}
+{% endif %}
+
+Em caso de dúvidas, responda este e-mail ou entre em contato conosco.
+
+Atenciosamente,
+Equipe da Confeitaria

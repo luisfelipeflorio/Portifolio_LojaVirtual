@@ -143,17 +143,17 @@
 
 ---
 
-### Sprint 4 — Checkout e Pedidos
+### Sprint 4 — Checkout e Pedidos [X]
 
 #### Tarefa 4.1 — Models de pedido
-- [ ] 4.1.1 Criar model `Order` em `orders/models.py` herdando de `TimeStampedModel` com todos os campos definidos no schema ER
-- [ ] 4.1.2 Definir `STATUS_CHOICES` como tupla de constantes na própria model: `RECEIVED`, `PREPARING`, `READY`, `DELIVERED`
-- [ ] 4.1.3 Definir `DELIVERY_CHOICES`: `PICKUP` (retirada) e `DELIVERY` (entrega)
-- [ ] 4.1.4 Implementar método `generate_protocol()` que gera protocolo único (ex: `CON-{ano}{random 4 digitos}`) e chamá-lo no `save()` quando `protocol` estiver vazio
-- [ ] 4.1.5 Criar model `OrderItem` em `orders/models.py` herdando de `TimeStampedModel` com campos: `order (FK)`, `product (FK null=True on_delete=SET_NULL)`, `product_name`, `unit_price`, `quantity`, `subtotal`
-- [ ] 4.1.6 Implementar método `save()` no `OrderItem` para calcular `subtotal = unit_price * quantity` automaticamente
-- [ ] 4.1.7 Registrar models no `orders/admin.py` com inline de `OrderItem` dentro de `Order`
-- [ ] 4.1.8 Executar `makemigrations orders` e `migrate`
+- [X] 4.1.1 Criar model `Order` em `orders/models.py` herdando de `TimeStampedModel` com todos os campos definidos no schema ER
+- [X] 4.1.2 Definir `STATUS_CHOICES` como tupla de constantes na própria model: `RECEIVED`, `PREPARING`, `READY`, `DELIVERED`
+- [X] 4.1.3 Definir `DELIVERY_CHOICES`: `PICKUP` (retirada) e `DELIVERY` (entrega)
+- [X] 4.1.4 Implementar método `generate_protocol()` que gera protocolo único (ex: `CON-{ano}{random 4 digitos}`) e chamá-lo no `save()` quando `protocol` estiver vazio
+- [X] 4.1.5 Criar model `OrderItem` em `orders/models.py` herdando de `TimeStampedModel` com campos: `order (FK)`, `product (FK null=True on_delete=SET_NULL)`, `product_name`, `unit_price`, `quantity`, `subtotal`
+- [X] 4.1.6 Implementar método `save()` no `OrderItem` para calcular `subtotal = unit_price * quantity` automaticamente
+- [X] 4.1.7 Registrar models no `orders/admin.py` com inline de `OrderItem` dentro de `Order`
+- [X] 4.1.8 Executar `makemigrations orders` e `migrate`
 
 #### Tarefa 4.2 — Formulário de checkout
 - [ ] 4.2.1 Criar `orders/forms.py` com `CheckoutForm` baseado em `forms.Form` (não ModelForm) com campos: `customer_name`, `customer_email`, `customer_phone`, `delivery_type` (RadioSelect), `delivery_address` (Textarea, required=False), `scheduled_at` (DateTimeInput), `notes` (Textarea, required=False)
@@ -161,27 +161,27 @@
 - [ ] 4.2.3 Aplicar classes TailwindCSS nos widgets via atributos `attrs` no `__init__` do formulário
 
 #### Tarefa 4.3 — Views de checkout e pedido
-- [ ] 4.3.1 Criar `CheckoutView` (CBV `FormView`) em `orders/views.py` que renderiza o formulário de checkout
-- [ ] 4.3.2 No método `get_initial()`, pré-preencher dados do cliente logado se `request.user.is_authenticated`
-- [ ] 4.3.3 No método `form_valid()`: criar `Order`, criar `OrderItem` para cada item do carrinho, chamar `cart.clear()`, disparar e-mail de confirmação e redirecionar para página de sucesso
-- [ ] 4.3.4 Criar `OrderSuccessView` (CBV `DetailView`) que exibe página de confirmação com protocolo, buscando a `Order` pelo `pk` ou `protocol`
-- [ ] 4.3.5 Criar `OrderHistoryView` (CBV `ListView` com `LoginRequiredMixin`) que lista pedidos do usuário logado ordenados por `-created_at`
-- [ ] 4.3.6 Criar `OrderDetailView` (CBV `DetailView` com `LoginRequiredMixin`) que exibe detalhe de um pedido do usuário logado (verificar `order.user == request.user`)
-- [ ] 4.3.7 Configurar URLs em `orders/urls.py`
+- [X] 4.3.1 Criar `CheckoutView` (CBV `FormView`) em `orders/views.py` que renderiza o formulário de checkout
+- [X] 4.3.2 No método `get_initial()`, pré-preencher dados do cliente logado se `request.user.is_authenticated`
+- [X] 4.3.3 No método `form_valid()`: criar `Order`, criar `OrderItem` para cada item do carrinho, chamar `cart.clear()`, disparar e-mail de confirmação e redirecionar para página de sucesso
+- [X] 4.3.4 Criar `OrderSuccessView` (CBV `DetailView`) que exibe página de confirmação com protocolo, buscando a `Order` pelo `pk` ou `protocol`
+- [X] 4.3.5 Criar `OrderHistoryView` (CBV `ListView` com `LoginRequiredMixin`) que lista pedidos do usuário logado ordenados por `-created_at`
+- [X] 4.3.6 Criar `OrderDetailView` (CBV `DetailView` com `LoginRequiredMixin`) que exibe detalhe de um pedido do usuário logado (verificar `order.user == request.user`)
+- [X] 4.3.7 Configurar URLs em `orders/urls.py`
 
 #### Tarefa 4.4 — Templates de checkout e pedido
-- [ ] 4.4.1 Criar `templates/orders/checkout.html` com formulário em duas colunas (dados do cliente | resumo do pedido)
-- [ ] 4.4.2 Implementar toggle JS vanilla para mostrar/ocultar campo de endereço conforme seleção de `delivery_type`
-- [ ] 4.4.3 Criar `templates/orders/order_success.html` com card de confirmação: protocolo em destaque, lista de itens, total, mensagem de agradecimento e link para home
-- [ ] 4.4.4 Criar `templates/orders/order_history.html` com tabela de pedidos: protocolo, data, total, status (badge colorido), link "Ver detalhe"
-- [ ] 4.4.5 Criar `templates/orders/order_detail.html` com detalhe completo do pedido: dados do cliente, itens, endereço de entrega, observações e status atual
+- [X] 4.4.1 Criar `templates/orders/checkout.html` com formulário em duas colunas (dados do cliente | resumo do pedido)
+- [X] 4.4.2 Implementar toggle JS vanilla para mostrar/ocultar campo de endereço conforme seleção de `delivery_type`
+- [X] 4.4.3 Criar `templates/orders/order_success.html` com card de confirmação: protocolo em destaque, lista de itens, total, mensagem de agradecimento e link para home
+- [X] 4.4.4 Criar `templates/orders/order_history.html` com tabela de pedidos: protocolo, data, total, status (badge colorido), link "Ver detalhe"
+- [X] 4.4.5 Criar `templates/orders/order_detail.html` com detalhe completo do pedido: dados do cliente, itens, endereço de entrega, observações e status atual
 
 #### Tarefa 4.5 — E-mail de confirmação de pedido
-- [ ] 4.5.1 Criar `orders/signals.py` com signal `post_save` no model `Order` que dispara e-mail de confirmação ao cliente quando `created=True`
-- [ ] 4.5.2 Conectar signal no `orders/apps.py` via método `ready()`
-- [ ] 4.5.3 Criar template de e-mail `templates/orders/email/order_confirmation.html` com dados do pedido formatados
-- [ ] 4.5.4 Criar template de e-mail texto puro `templates/orders/email/order_confirmation.txt`
-- [ ] 4.5.5 Configurar `EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'` em desenvolvimento no `settings.py`
+- [X] 4.5.1 Criar `orders/signals.py` com signal `post_save` no model `Order` que dispara e-mail de confirmação ao cliente quando `created=True`
+- [X] 4.5.2 Conectar signal no `orders/apps.py` via método `ready()`
+- [X] 4.5.3 Criar template de e-mail `templates/orders/email/order_confirmation.html` com dados do pedido formatados
+- [X] 4.5.4 Criar template de e-mail texto puro `templates/orders/email/order_confirmation.txt`
+- [X] 4.5.5 Configurar `EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'` em desenvolvimento no `settings.py`
 
 ---
 

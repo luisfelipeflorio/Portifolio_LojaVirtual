@@ -139,3 +139,7 @@ STATICFILES_DIRS = [
 MEDIA_ROOT = BASE_DIR / 'media'
 
 MEDIA_URL = '/media/'
+
+DEFAULT_FROM_EMAIL = 'Confeitaria <noreply@confeitaria.com>'
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
