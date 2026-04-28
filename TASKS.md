@@ -78,37 +78,37 @@
 
 ---
 
-### Sprint 2 — Catálogo de Produtos
+### Sprint 2 — Catálogo de Produtos [X]
 
-#### Tarefa 2.1 — Models de Catálogo
-- [ ] 2.1.1 Criar model `Category` em `catalog/models.py` herdando de `TimeStampedModel`; campos: `name`, `slug (auto)`, `description`, `image`, `is_active`, `sort_order`
-- [ ] 2.1.2 Criar model `Product` em `catalog/models.py` herdando de `TimeStampedModel`; campos: `category (FK)`, `name`, `slug (auto)`, `description`, `price`, `image`, `is_active`, `is_featured`, `is_promotion`, `promotion_price`, `stock`
-- [ ] 2.1.3 Sobrescrever método `save()` para auto-gerar `slug` a partir do `name` com `slugify`
-- [ ] 2.1.4 Adicionar `get_absolute_url()` ao model `Product` apontando para a view de detalhe
-- [ ] 2.1.5 Adicionar propriedade `current_price` ao `Product` que retorna `promotion_price` se `is_promotion` else `price`
-- [ ] 2.1.6 Registrar models no `catalog/admin.py` com `list_display`, `list_filter` e `search_fields` configurados
-- [ ] 2.1.7 Executar `makemigrations catalog` e `migrate`
+#### Tarefa 2.1 — Models de Catálogo [X]
+- [X] 2.1.1 Criar model `Category` em `catalog/models.py` herdando de `TimeStampedModel`; campos: `name`, `slug (auto)`, `description`, `image`, `is_active`, `sort_order`
+- [X] 2.1.2 Criar model `Product` em `catalog/models.py` herdando de `TimeStampedModel`; campos: `category (FK)`, `name`, `slug (auto)`, `description`, `price`, `image`, `is_active`, `is_featured`, `is_promotion`, `promotion_price`, `stock`
+- [X] 2.1.3 Sobrescrever método `save()` para auto-gerar `slug` a partir do `name` com `slugify`
+- [X] 2.1.4 Adicionar `get_absolute_url()` ao model `Product` apontando para a view de detalhe
+- [X] 2.1.5 Adicionar propriedade `current_price` ao `Product` que retorna `promotion_price` se `is_promotion` else `price`
+- [X] 2.1.6 Registrar models no `catalog/admin.py` com `list_display`, `list_filter` e `search_fields` configurados
+- [X] 2.1.7 Executar `makemigrations catalog` e `migrate`
 
-#### Tarefa 2.2 — Views do catálogo
-- [ ] 2.2.1 Criar `ProductListView` (CBV `ListView`) em `catalog/views.py` com queryset `Product.objects.filter(is_active=True)`
-- [ ] 2.2.2 Implementar filtragem por categoria via `get_queryset()` usando `self.request.GET.get('categoria')`
-- [ ] 2.2.3 Implementar busca por nome via `get_queryset()` usando `self.request.GET.get('q')`
-- [ ] 2.2.4 Passar lista de categorias ativas ao contexto via `get_context_data()` para o menu de filtros
-- [ ] 2.2.5 Criar `ProductDetailView` (CBV `DetailView`) com `queryset = Product.objects.filter(is_active=True)` e `slug_field = 'slug'`
-- [ ] 2.2.6 Configurar URLs em `catalog/urls.py`: `path('', ProductListView, name='list')` e `path('<slug:slug>/', ProductDetailView, name='detail')`
+#### Tarefa 2.2 — Views do catálogo [X]
+- [X] 2.2.1 Criar `ProductListView` (CBV `ListView`) em `catalog/views.py` com queryset `Product.objects.filter(is_active=True)`
+- [X] 2.2.2 Implementar filtragem por categoria via `get_queryset()` usando `self.request.GET.get('categoria')`
+- [X] 2.2.3 Implementar busca por nome via `get_queryset()` usando `self.request.GET.get('q')`
+- [X] 2.2.4 Passar lista de categorias ativas ao contexto via `get_context_data()` para o menu de filtros
+- [X] 2.2.5 Criar `ProductDetailView` (CBV `DetailView`) com `queryset = Product.objects.filter(is_active=True)` e `slug_field = 'slug'`
+- [X] 2.2.6 Configurar URLs em `catalog/urls.py`: `path('', ProductListView, name='list')` e `path('<slug:slug>/', ProductDetailView, name='detail')`
 
-#### Tarefa 2.3 — Templates do catálogo
-- [ ] 2.3.1 Criar `templates/catalog/product_list.html` estendendo `base.html`
-- [ ] 2.3.2 Implementar barra de filtros por categoria (pills/tabs com TailwindCSS) e campo de busca
-- [ ] 2.3.3 Implementar grid responsivo de cards de produto usando o padrão definido no Design System
-- [ ] 2.3.4 Criar partial `templates/catalog/_product_card.html` reutilizável com badge de promoção e destaque
-- [ ] 2.3.5 Criar `templates/catalog/product_detail.html` com imagem grande, nome, descrição, preço e botão "Adicionar ao carrinho"
-- [ ] 2.3.6 Implementar estado vazio (nenhum produto encontrado) com mensagem amigável
+#### Tarefa 2.3 — Templates do catálogo [X]
+- [X] 2.3.1 Criar `templates/catalog/product_list.html` estendendo `base.html`
+- [X] 2.3.2 Implementar barra de filtros por categoria (pills/tabs com TailwindCSS) e campo de busca
+- [X] 2.3.3 Implementar grid responsivo de cards de produto usando o padrão definido no Design System
+- [X] 2.3.4 Criar partial `templates/catalog/_product_card.html` reutilizável com badge de promoção e destaque
+- [X] 2.3.5 Criar `templates/catalog/product_detail.html` com imagem grande, nome, descrição, preço e botão "Adicionar ao carrinho"
+- [X] 2.3.6 Implementar estado vazio (nenhum produto encontrado) com mensagem amigável
 
-#### Tarefa 2.4 — Página inicial (core)
-- [ ] 2.4.1 Criar `HomeView` (CBV `TemplateView`) em `core/views.py` que passa ao contexto: produtos em destaque (top 4) e categorias ativas
-- [ ] 2.4.2 Criar `templates/core/home.html` com seção hero (gradiente + chamada para ação), seção de destaques e seção de categorias
-- [ ] 2.4.3 Configurar URL `path('', HomeView, name='home')` em `core/urls.py` e incluir no `urls.py` principal
+#### Tarefa 2.4 — Página inicial (core) [X]
+- [X] 2.4.1 Criar `HomeView` (CBV `TemplateView`) em `core/views.py` que passa ao contexto: produtos em destaque (top 4) e categorias ativas
+- [X] 2.4.2 Criar `templates/core/home.html` com seção hero (gradiente + chamada para ação), seção de destaques e seção de categorias
+- [X] 2.4.3 Configurar URL `path('', HomeView, name='home')` em `core/urls.py` e incluir no `urls.py` principal
 
 ---
 

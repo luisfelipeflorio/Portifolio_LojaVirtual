@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ product.name }}{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+    <!-- Product Image -->
+    <div class="rounded-2xl overflow-hidden bg-rose-50 shadow-sm">
+      {% if product.image %}
+        <img src="{{ product.image.url }}" alt="{{ product.name }}" class="w-full h-auto object-cover">
+      {% else %}
+        <div class="w-full h-96 flex items-center justify-center">
+          <span class="text-rose-300 font-serif text-2xl">Sem imagem</span>
+        </div>
+      {% endif %}
+    </div>
+
+    <!-- Product Info -->
+    <div class="flex flex-col justify-center">
+      <!-- Badges -->
+      <div class="flex gap-2 mb-4">
+        {% if product.is_featured %}
+          <span class="bg-rose-500 text-white text-xs font-semibold px-3 py-1 rounded-full">
+            Destaque
+          </span>
+        {% endif %}
+        {% if product.is_promotion %}
+          <span class="bg-amber-400 text-white text-xs font-semibold px-3 py-1 rounded-full">
+            Promoção
+          </span>
+        {% endif %}
+      </div>
+
+      <!-- Name -->
+      <h1 class="font-['Playfair_Display'] text-3xl md:text-4xl font-bold text-neutral-900 mb-4">
+        {{ product.name }}
+      </h1>
+
+      <!-- Price -->
+      <div class="flex items-center gap-3 mb-6">
+        <span class="text-2xl font-bold text-rose-600">
+          R$ {{ product.current_price|floatformat:2 }}
+        </span>
+        {% if product.is_promotion and product.promotion_price %}
+          <span class="text-lg text-neutral-400 line-through">
+            R$ {{ product.price|floatformat:2 }}
+          </span>
+        {% endif %}
+      </div>
+
+      <!-- Description -->
+      <div class="mb-8">
+        <h2 class="font-['Playfair_Display'] text-xl font-semibold text-neutral-800 mb-2">
+          Descrição
+        </h2>
+        <p class="text-neutral-600 leading-relaxed">
+          {{ product.description|default:"Sem descrição disponível." }}
+        </p>
+      </div>
+
+      <!-- Category -->
+      <div class="mb-6">
+        <span class="text-sm text-neutral-500">Categoria:</span>
+        <a href="{{ product.category.get_absolute_url }}" class="text-sm text-rose-600 hover:text-rose-700 ml-1">
+          {{ product.category.name }}
+        </a>
+      </div>
+
+      <!-- Add to Cart Form -->
+      <form method="post" action="{% url 'cart:add' product.slug %}" class="flex items-center gap-4">
+        {% csrf_token %}
+        <div class="flex items-center border border-neutral-200 rounded-xl">
+          <button type="button" onclick="this.nextElementSibling.stepDown()"
+                  class="px-3 py-2 text-neutral-600 hover:text-rose-600 transition-colors cursor-pointer">
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"></path>
+            </svg>
+          </button>
+          <input type="number" name="quantity" value="1" min="1" max="{{ product.stock|default:99 }}"
+                 class="w-16 text-center border-0 focus:ring-0 text-neutral-800 font-medium">
+          <button type="button" onclick="this.previousElementSibling.stepUp()"
+                  class="px-3 py-2 text-neutral-600 hover:text-rose-600 transition-colors cursor-pointer">
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+            </svg>
+          </button>
+        </div>
+        <button type="submit"
+                class="flex-1 bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700
+                       text-white font-medium px-6 py-3 rounded-xl shadow-md hover:shadow-lg
+                       transition-all duration-200 cursor-pointer">
+          Adicionar ao carrinho
+        </button>
+      </form>
+
+      {% if product.stock == 0 %}
+        <p class="text-red-500 text-sm mt-3">Produto fora de estoque</p>
+      {% endif %}
+    </div>
+  </div>
+
+  <!-- Back to Catalog -->
+  <div class="mt-12">
+    <a href="{% url 'catalog:list' %}"
+       class="inline-flex items-center text-rose-600 hover:text-rose-700 font-medium transition-colors">
+      <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+      </svg>
+      Voltar ao catálogo
+    </a>
+  </div>
+</div>
+{% endblock %}

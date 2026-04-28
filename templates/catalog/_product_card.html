@@ -1,0 +1,36 @@
+<div class="bg-white rounded-2xl shadow-sm hover:shadow-md border border-neutral-100 overflow-hidden transition-all duration-200 group">
+  <div class="relative overflow-hidden">
+    {% if product.image %}
+      <img src="{{ product.image.url }}" alt="{{ product.name }}" class="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-300">
+    {% else %}
+      <div class="w-full h-52 bg-rose-50 flex items-center justify-center">
+        <span class="text-rose-300 font-serif text-lg">Sem imagem</span>
+      </div>
+    {% endif %}
+    {% if product.is_promotion %}
+      <span class="absolute top-3 left-3 bg-amber-400 text-white text-xs font-semibold px-2 py-1 rounded-full">
+        Promoção
+      </span>
+    {% endif %}
+    {% if product.is_featured %}
+      <span class="absolute top-3 right-3 bg-rose-500 text-white text-xs font-semibold px-2 py-1 rounded-full">
+        Destaque
+      </span>
+    {% endif %}
+  </div>
+  <div class="p-4">
+    <h3 class="font-['Playfair_Display'] font-semibold text-neutral-900 text-lg">{{ product.name }}</h3>
+    <p class="text-sm text-neutral-500 mt-1 line-clamp-2">{{ product.description|truncatewords:15 }}</p>
+    <div class="flex items-center justify-between mt-4">
+      <div class="flex items-center gap-2">
+        <span class="text-rose-600 font-bold text-xl">R$ {{ product.current_price|floatformat:2 }}</span>
+        {% if product.is_promotion and product.promotion_price %}
+          <span class="text-neutral-400 text-sm line-through">R$ {{ product.price|floatformat:2 }}</span>
+        {% endif %}
+      </div>
+      <a href="{{ product.get_absolute_url }}" class="bg-gradient-to-r from-rose-500 to-pink-600 text-white text-sm font-medium px-4 py-2 rounded-xl hover:shadow-md transition-all duration-200 cursor-pointer">
+        Ver mais
+      </a>
+    </div>
+  </div>
+</div>

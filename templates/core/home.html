@@ -3,8 +3,87 @@
 {% block title %}Início{% endblock %}
 
 {% block content %}
-<div class="container mx-auto px-4 py-8">
-    <h1 class="text-4xl font-serif text-center text-rose-600 mb-8">Bem-vindo à Confeitaria!</h1>
-    <p class="text-center text-gray-600">Doces artesanais feitos com amor.</p>
-</div>
+<!-- Hero Section -->
+<section class="bg-gradient-to-br from-rose-50 via-pink-100 to-rose-200 py-20 md:py-28">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <h1 class="font-['Playfair_Display'] text-4xl md:text-5xl lg:text-6xl font-bold text-neutral-900 mb-6">
+      Doces Artesanais<br>
+      <span class="text-rose-600">Feitos com Amor</span>
+    </h1>
+    <p class="font-['Inter'] text-lg md:text-xl text-neutral-600 max-w-2xl mx-auto mb-10">
+      Descubra nossos doces e sobremesas preparados com ingredientes selecionados e muito carinho.
+    </p>
+    <a href="{% url 'catalog:list' %}"
+       class="inline-block bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700
+              text-white font-medium px-8 py-4 rounded-xl shadow-md hover:shadow-lg transition-all duration-200 cursor-pointer">
+      Ver Catálogo
+    </a>
+  </div>
+</section>
+
+<!-- Featured Products Section -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <h2 class="font-['Playfair_Display'] text-3xl md:text-4xl font-bold text-neutral-900 mb-4">
+        Destaques da Semana
+      </h2>
+      <p class="font-['Inter'] text-base text-neutral-600">
+        Selecionamos os nossos melhores produtos para você
+      </p>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      {% for product in featured_products %}
+        {% include 'catalog/_product_card.html' %}
+      {% empty %}
+        <div class="col-span-full text-center py-8 text-neutral-500">
+          Nenhum produto em destaque no momento.
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- Categories Section -->
+<section class="py-16 bg-stone-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <h2 class="font-['Playfair_Display'] text-3xl md:text-4xl font-bold text-neutral-900 mb-4">
+        Nossas Categorias
+      </h2>
+      <p class="font-['Inter'] text-base text-neutral-600">
+        Explore nossos doces por categoria
+      </p>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {% for category in categories %}
+        <a href="{{ category.get_absolute_url }}"
+           class="group bg-white rounded-2xl shadow-sm hover:shadow-md border border-neutral-100 overflow-hidden transition-all duration-200">
+          <div class="relative overflow-hidden h-48 bg-rose-50 flex items-center justify-center">
+            {% if category.image %}
+              <img src="{{ category.image.url }}" alt="{{ category.name }}"
+                   class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+            {% else %}
+              <span class="text-rose-300 font-serif text-lg">Sem imagem</span>
+            {% endif %}
+          </div>
+          <div class="p-6 text-center">
+            <h3 class="font-['Playfair_Display'] font-semibold text-neutral-900 text-xl">
+              {{ category.name }}
+            </h3>
+            {% if category.description %}
+              <p class="text-sm text-neutral-500 mt-2 line-clamp-2">
+                {{ category.description|truncatewords:15 }}
+              </p>
+            {% endif %}
+          </div>
+        </a>
+      {% empty %}
+        <div class="col-span-full text-center py-8 text-neutral-500">
+          Nenhuma categoria disponível no momento.
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
 {% endblock %}
