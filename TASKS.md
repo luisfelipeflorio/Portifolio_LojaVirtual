@@ -222,31 +222,31 @@
 
 ---
 
-### Sprint 6 — Polimento, SEO e Ajustes Finais
+### Sprint 6 — Polimento, SEO e Ajustes Finais [X]
 
-#### Tarefa 6.1 — Polimento de UI
-- [ ] 6.1.1 Revisar responsividade de todos os templates em mobile (375px), tablet (768px) e desktop (1280px)
-- [ ] 6.1.2 Adicionar estados de loading/disabled nos botões de formulário para prevenir duplo envio
-- [ ] 6.1.3 Implementar mensagens de feedback (django.contrib.messages) em todas as ações com estilo TailwindCSS
-- [ ] 6.1.4 Revisar contraste de texto conforme WCAG AA em todos os componentes
+#### Tarefa 6.1 — Polimento de UI [X]
+- [X] 6.1.1 Revisar responsividade de todos os templates em mobile (375px), tablet (768px) e desktop (1280px)
+- [X] 6.1.2 Adicionar estados de loading/disabled nos botões de formulário para prevenir duplo envio
+- [X] 6.1.3 Implementar mensagens de feedback (django.contrib.messages) em todas as ações com estilo TailwindCSS
+- [X] 6.1.4 Revisar contraste de texto conforme WCAG AA em todos os componentes
 
-#### Tarefa 6.2 — SEO básico
-- [ ] 6.2.1 Adicionar `<meta name="description">` em `base.html` com bloco sobrescrevível por cada template
-- [ ] 6.2.2 Adicionar `<title>{% block title %}{% endblock %} | Confeitaria</title>` dinâmico
-- [ ] 6.2.3 Adicionar `alt` descritivo em todas as tags `<img>` dos templates
-- [ ] 6.2.4 Criar `sitemap.xml` básico usando `django.contrib.sitemaps`
+#### Tarefa 6.2 — SEO básico [X]
+- [X] 6.2.1 Adicionar `<meta name="description">` em `base.html` com bloco sobrescrevível por cada template
+- [X] 6.2.2 Adicionar `<title>{% block title %}{% endblock %} | Confeitaria</title>` dinâmico
+- [X] 6.2.3 Adicionar `alt` descritivo em todas as tags `<img>` dos templates
+- [X] 6.2.4 Criar `sitemap.xml` básico usando `django.contrib.sitemaps`
 
-#### Tarefa 6.3 — Configurações de produção
-- [ ] 6.3.1 Separar `settings.py` em `settings/base.py`, `settings/development.py` e `settings/production.py`
-- [ ] 6.3.2 Configurar `ALLOWED_HOSTS` e `DEBUG=False` via `.env` para produção
-- [ ] 6.3.3 Configurar servidor de e-mail SMTP real nas variáveis de ambiente de produção
-- [ ] 6.3.4 Adicionar `WhiteNoise` para servir arquivos estáticos em produção
-- [ ] 6.3.5 Executar `python manage.py collectstatic` e verificar que todos os arquivos estáticos são coletados corretamente
+#### Tarefa 6.3 — Configurações de produção [X]
+- [X] 6.3.1 Separar `settings.py` em `settings/base.py`, `settings/development.py` e `settings/production.py`
+- [X] 6.3.2 Configurar `ALLOWED_HOSTS` e `DEBUG=False` via `.env` para produção
+- [X] 6.3.3 Configurar servidor de e-mail SMTP real nas variáveis de ambiente de produção
+- [X] 6.3.4 Adicionar `WhiteNoise` para servir arquivos estáticos em produção
+- [X] 6.3.5 Executar `python manage.py collectstatic` e verificar que todos os arquivos estáticos são coletados corretamente
 
-#### Tarefa 6.4 — Build final do TailwindCSS
-- [ ] 6.4.1 Executar build de produção do TailwindCSS com `--minify`: `tailwindcss -i static/src/input.css -o static/css/output.css --minify`
-- [ ] 6.4.2 Verificar que todos os utilitários usados nos templates são gerados corretamente (sem classes purgadas indevidamente)
-- [ ] 6.4.3 Documentar o comando de build no `README.md`
+#### Tarefa 6.4 — Build final do TailwindCSS [X]
+- [X] 6.4.1 Executar build de produção do TailwindCSS com `--minify`: `tailwindcss -i static/src/input.css -o static/css/output.css --minify`
+- [X] 6.4.2 Verificar que todos os utilitários usados nos templates são gerados corretamente (sem classes purgadas indevidamente)
+- [X] 6.4.3 Documentar o comando de build no `README.md`
 
 ---
 

@@ -29,9 +29,23 @@
                 {% endfor %}
                 
                 <div class="flex items-center justify-between pt-4">
-                    <button type="submit" class="bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 text-white font-medium px-6 py-3 rounded-xl shadow-md hover:shadow-lg transition-all duration-200 cursor-pointer">
-                        Salvar Alterações
+                    <button type="submit" id="submit-btn" class="bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 text-white font-medium px-6 py-3 rounded-xl shadow-md hover:shadow-lg transition-all duration-200 cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2">
+                        <span id="btn-text">Salvar Alterações</span>
+                        <svg id="btn-spinner" class="hidden animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
                     </button>
+                    <script>
+                        document.querySelector('form').addEventListener('submit', function() {
+                            const btn = document.getElementById('submit-btn');
+                            const btnText = document.getElementById('btn-text');
+                            const spinner = document.getElementById('btn-spinner');
+                            btn.disabled = true;
+                            btnText.textContent = 'Salvando...';
+                            spinner.classList.remove('hidden');
+                        });
+                    </script>
                     <a href="{% url 'core:home' %}" class="text-neutral-600 hover:text-neutral-800 transition">
                         Voltar para Home
                     </a>
