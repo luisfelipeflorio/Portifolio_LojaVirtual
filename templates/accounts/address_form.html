@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+
+{% block title %}{% if object %}Editar Endereço{% else %}Novo Endereço{% endif %}{% endblock %}
+
+{% block content %}
+<div class="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-2xl mx-auto">
+
+        <div class="mb-8">
+            <h1 class="font-serif text-3xl md:text-4xl font-bold text-neutral-900">
+                {% if object %}Editar Endereço{% else %}Novo Endereço{% endif %}
+            </h1>
+        </div>
+
+        <div class="bg-white shadow-lg rounded-2xl p-8">
+            <form method="post" class="space-y-5">
+                {% csrf_token %}
+                {% include '_messages.html' %}
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <div class="sm:col-span-2">
+                        <label for="{{ form.street.id_for_label }}" class="block text-sm font-medium text-neutral-700 mb-1">
+                            {{ form.street.label|capfirst }}
+                        </label>
+                        {{ form.street }}
+                        {% if form.street.errors %}
+                            <span class="text-xs text-red-500 mt-1">{{ form.street.errors.0 }}</span>
+                        {% endif %}
+                    </div>
+                    <div>
+                        <label for="{{ form.number.id_for_label }}" class="block text-sm font-medium text-neutral-700 mb-1">
+                            {{ form.number.label|capfirst }}
+                        </label>
+                        {{ form.number }}
+                        {% if form.number.errors %}
+                            <span class="text-xs text-red-500 mt-1">{{ form.number.errors.0 }}</span>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div>
+                    <label for="{{ form.complement.id_for_label }}" class="block text-sm font-medium text-neutral-700 mb-1">
+                        {{ form.complement.label|capfirst }} <span class="text-neutral-400 font-normal">(opcional)</span>
+                    </label>
+                    {{ form.complement }}
+                    {% if form.complement.errors %}
+                        <span class="text-xs text-red-500 mt-1">{{ form.complement.errors.0 }}</span>
+                    {% endif %}
+                </div>
+
+                <div>
+                    <label for="{{ form.neighborhood.id_for_label }}" class="block text-sm font-medium text-neutral-700 mb-1">
+                        {{ form.neighborhood.label|capfirst }}
+                    </label>
+                    {{ form.neighborhood }}
+                    {% if form.neighborhood.errors %}
+                        <span class="text-xs text-red-500 mt-1">{{ form.neighborhood.errors.0 }}</span>
+                    {% endif %}
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <div class="sm:col-span-2">
+                        <label for="{{ form.city.id_for_label }}" class="block text-sm font-medium text-neutral-700 mb-1">
+                            {{ form.city.label|capfirst }}
+                        </label>
+                        {{ form.city }}
+                        {% if form.city.errors %}
+                            <span class="text-xs text-red-500 mt-1">{{ form.city.errors.0 }}</span>
+                        {% endif %}
+                    </div>
+                    <div>
+                        <label for="{{ form.state.id_for_label }}" class="block text-sm font-medium text-neutral-700 mb-1">
+                            {{ form.state.label|capfirst }}
+                        </label>
+                        {{ form.state }}
+                        {% if form.state.errors %}
+                            <span class="text-xs text-red-500 mt-1">{{ form.state.errors.0 }}</span>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="max-w-xs">
+                    <label for="{{ form.zip_code.id_for_label }}" class="block text-sm font-medium text-neutral-700 mb-1">
+                        {{ form.zip_code.label }}
+                    </label>
+                    {{ form.zip_code }}
+                    {% if form.zip_code.errors %}
+                        <span class="text-xs text-red-500 mt-1">{{ form.zip_code.errors.0 }}</span>
+                    {% endif %}
+                </div>
+
+                <div class="flex items-center gap-3 pt-1">
+                    {{ form.is_default }}
+                    <label for="{{ form.is_default.id_for_label }}" class="text-sm font-medium text-neutral-700 cursor-pointer">
+                        {{ form.is_default.label|capfirst }}
+                    </label>
+                </div>
+
+                <div class="flex items-center justify-between pt-4">
+                    <button type="submit"
+                            class="bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700
+                                   text-white font-medium px-6 py-3 rounded-xl shadow-md hover:shadow-lg
+                                   transition-all duration-200 cursor-pointer">
+                        {% if object %}Salvar Alterações{% else %}Adicionar Endereço{% endif %}
+                    </button>
+                    <a href="{% url 'accounts:address_list' %}"
+                       class="text-neutral-600 hover:text-neutral-800 transition font-medium">
+                        Cancelar
+                    </a>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

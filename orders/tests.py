@@ -110,7 +110,7 @@ class CheckoutFlowTest(TestCase):
         }
         session.save()
 
-        response = self.client.post('/pedido/', {
+        response = self.client.post('/orders/checkout/', {
             'customer_name': 'João Silva',
             'customer_email': 'joao@email.com',
             'customer_phone': '11999999999',
@@ -128,7 +128,7 @@ class CheckoutFlowTest(TestCase):
         self.assertEqual(order.subtotal, (self.product1.current_price * 2) + (self.product2.current_price * 1))
 
     def test_checkout_with_empty_cart_shows_error(self):
-        response = self.client.post('/pedido/', {
+        response = self.client.post('/orders/checkout/', {
             'customer_name': 'João Silva',
             'customer_email': 'joao@email.com',
             'customer_phone': '11999999999',

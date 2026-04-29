@@ -1,6 +1,12 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from .models import CustomUser
+from .models import CustomUser, Address
+
+_TW_INPUT = (
+    'w-full px-4 py-3 rounded-xl border border-neutral-200 bg-white '
+    'focus:outline-none focus:ring-2 focus:ring-rose-400 focus:border-transparent '
+    'placeholder-neutral-400 text-neutral-800 transition-all duration-200'
+)
 
 
 class RegisterForm(UserCreationForm):
@@ -16,18 +22,14 @@ class RegisterForm(UserCreationForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for field in self.fields.values():
-            field.widget.attrs.update({
-                'class': 'w-full px-4 py-3 rounded-xl border border-neutral-200 bg-white focus:outline-none focus:ring-2 focus:ring-rose-400 focus:border-transparent placeholder-neutral-400 text-neutral-800 transition-all duration-200'
-            })
+            field.widget.attrs.update({'class': _TW_INPUT})
 
 
 class LoginForm(AuthenticationForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for field in self.fields.values():
-            field.widget.attrs.update({
-                'class': 'w-full px-4 py-3 rounded-xl border border-neutral-200 bg-white focus:outline-none focus:ring-2 focus:ring-rose-400 focus:border-transparent placeholder-neutral-400 text-neutral-800 transition-all duration-200'
-            })
+            field.widget.attrs.update({'class': _TW_INPUT})
 
 
 class ProfileForm(forms.ModelForm):
@@ -42,6 +44,22 @@ class ProfileForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for field in self.fields.values():
-            field.widget.attrs.update({
-                'class': 'w-full px-4 py-3 rounded-xl border border-neutral-200 bg-white focus:outline-none focus:ring-2 focus:ring-rose-400 focus:border-transparent placeholder-neutral-400 text-neutral-800 transition-all duration-200'
-            })
+            field.widget.attrs.update({'class': _TW_INPUT})
+
+
+class AddressForm(forms.ModelForm):
+    class Meta:
+        model = Address
+        fields = ('street', 'number', 'complement', 'neighborhood', 'city', 'state', 'zip_code', 'is_default')
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for name, field in self.fields.items():
+            if name == 'is_default':
+                field.widget.attrs.update({
+                    'class': 'h-4 w-4 text-rose-500 border-neutral-300 rounded cursor-pointer'
+                })
+            else:
+                field.widget.attrs.update({'class': _TW_INPUT})
+        self.fields['state'].widget.attrs['placeholder'] = 'SP'
+        self.fields['zip_code'].widget.attrs['placeholder'] = '00000-000'

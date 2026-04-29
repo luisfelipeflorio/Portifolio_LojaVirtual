@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% block title %}Meus Endereços{% endblock %}
+
+{% block content %}
+<div class="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mx-auto">
+
+        <div class="flex items-center justify-between mb-8">
+            <h1 class="font-serif text-3xl md:text-4xl font-bold text-neutral-900">
+                Meus Endereços
+            </h1>
+            <a href="{% url 'accounts:address_create' %}"
+               class="bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700
+                      text-white font-medium px-5 py-2.5 rounded-xl shadow-md hover:shadow-lg
+                      transition-all duration-200 text-sm">
+                + Novo Endereço
+            </a>
+        </div>
+
+        {% include '_messages.html' %}
+
+        {% if addresses %}
+            <div class="space-y-4">
+                {% for address in addresses %}
+                <div class="bg-white rounded-2xl shadow-sm border {% if address.is_default %}border-rose-300{% else %}border-neutral-100{% endif %} p-6">
+                    <div class="flex items-start justify-between gap-4">
+                        <div class="flex-1">
+                            {% if address.is_default %}
+                            <span class="inline-block bg-rose-100 text-rose-600 text-xs font-semibold px-2 py-1 rounded-full mb-2">
+                                Padrão
+                            </span>
+                            {% endif %}
+                            <p class="font-medium text-neutral-900">
+                                {{ address.street }}, {{ address.number }}
+                                {% if address.complement %} — {{ address.complement }}{% endif %}
+                            </p>
+                            <p class="text-sm text-neutral-500 mt-1">
+                                {{ address.neighborhood }} · {{ address.city }}/{{ address.state }}
+                            </p>
+                            <p class="text-sm text-neutral-400">CEP {{ address.zip_code }}</p>
+                        </div>
+                        <div class="flex items-center gap-2 flex-shrink-0">
+                            {% if not address.is_default %}
+                            <form method="post" action="{% url 'accounts:address_set_default' address.pk %}">
+                                {% csrf_token %}
+                                <button type="submit"
+                                        class="text-xs border border-neutral-200 text-neutral-600 hover:border-rose-300 hover:text-rose-600
+                                               px-3 py-1.5 rounded-lg transition-all duration-200 cursor-pointer">
+                                    Definir padrão
+                                </button>
+                            </form>
+                            {% endif %}
+                            <a href="{% url 'accounts:address_update' address.pk %}"
+                               class="text-xs border border-neutral-200 text-neutral-600 hover:border-rose-300 hover:text-rose-600
+                                      px-3 py-1.5 rounded-lg transition-all duration-200">
+                                Editar
+                            </a>
+                            <a href="{% url 'accounts:address_delete' address.pk %}"
+                               class="text-xs border border-red-200 text-red-500 hover:bg-red-50
+                                      px-3 py-1.5 rounded-lg transition-all duration-200">
+                                Remover
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="bg-white rounded-2xl shadow-sm border border-neutral-100 p-12 text-center">
+                <p class="text-neutral-400 text-lg mb-4">Nenhum endereço cadastrado ainda.</p>
+                <a href="{% url 'accounts:address_create' %}"
+                   class="bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700
+                          text-white font-medium px-6 py-3 rounded-xl shadow-md hover:shadow-lg
+                          transition-all duration-200 inline-block">
+                    Adicionar primeiro endereço
+                </a>
+            </div>
+        {% endif %}
+
+        <div class="mt-6">
+            <a href="{% url 'accounts:profile' %}" class="text-rose-600 hover:text-rose-700 font-medium transition-colors">
+                ← Voltar para o perfil
+            </a>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

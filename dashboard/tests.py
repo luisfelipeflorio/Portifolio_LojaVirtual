@@ -59,7 +59,7 @@ class OrderStatusUpdateTest(TestCase):
 
     def test_update_order_status(self):
         self.client.login(username='admin@email.com', password='admin123')
-        response = self.client.post(f'/dashboard/pedidos/{self.order.pk}/status/', {
+        response = self.client.post(f'/dashboard/orders/update-status/{self.order.pk}/', {
             'status': 'preparing',
         })
         self.assertEqual(response.status_code, 302)
@@ -68,7 +68,7 @@ class OrderStatusUpdateTest(TestCase):
 
     def test_update_order_status_invalid_status(self):
         self.client.login(username='admin@email.com', password='admin123')
-        response = self.client.post(f'/dashboard/pedidos/{self.order.pk}/status/', {
+        response = self.client.post(f'/dashboard/orders/update-status/{self.order.pk}/', {
             'status': 'invalid_status',
         })
         self.order.refresh_from_db()
@@ -82,7 +82,7 @@ class OrderStatusUpdateTest(TestCase):
             is_staff=False,
         )
         self.client.login(username='user@email.com', password='user123')
-        response = self.client.post(f'/dashboard/pedidos/{self.order.pk}/status/', {
+        response = self.client.post(f'/dashboard/orders/update-status/{self.order.pk}/', {
             'status': 'preparing',
         })
         self.assertEqual(response.status_code, 403)

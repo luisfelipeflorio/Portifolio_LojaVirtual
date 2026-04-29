@@ -52,13 +52,23 @@
                 </div>
             </form>
             
-            <div class="mt-8 pt-8 border-t border-neutral-200">
-                <h2 class="font-['Playfair_Display'] text-xl font-semibold text-neutral-900 mb-4">
-                    Histórico de Pedidos
-                </h2>
-                <a href="{% url 'orders:history' %}" class="text-rose-600 hover:text-rose-500 font-medium">
-                    Ver todos os meus pedidos →
-                </a>
+            <div class="mt-8 pt-8 border-t border-neutral-200 grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div>
+                    <h2 class="font-['Playfair_Display'] text-xl font-semibold text-neutral-900 mb-2">
+                        Histórico de Pedidos
+                    </h2>
+                    <a href="{% url 'orders:history' %}" class="text-rose-600 hover:text-rose-500 font-medium">
+                        Ver todos os meus pedidos →
+                    </a>
+                </div>
+                <div>
+                    <h2 class="font-['Playfair_Display'] text-xl font-semibold text-neutral-900 mb-2">
+                        Meus Endereços
+                    </h2>
+                    <a href="{% url 'accounts:address_list' %}" class="text-rose-600 hover:text-rose-500 font-medium">
+                        Gerenciar endereços →
+                    </a>
+                </div>
             </div>
         </div>
     </div>
